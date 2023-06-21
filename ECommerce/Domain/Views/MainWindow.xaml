@@ -1,0 +1,104 @@
+﻿<Window x:Class="ECommerce.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ECommerce" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="850" 
+        Width="800" 
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Margin="0,0,0,93">
+            <Border BorderThickness="20,20,20,20" BorderBrush="Orange">
+                <StackPanel Width="800" Orientation="Horizontal">
+                    <Image Source="\Images\Ebay.jpeg" Margin="28,12,2,0" RenderTransformOrigin="0.5,0.5" Width="372" Height="101">
+                        <Image.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleY="0.522"/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="1.847"/>
+                            </TransformGroup>
+                        </Image.RenderTransform>
+                    </Image>
+                    <!--<Button Command="{Binding ToLowerCommand}"
+                            Content="{Binding FilterText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                            Background="Orange"
+                            Padding="20"
+                            Foreground="White"
+                            BorderThickness="0"
+                            FontSize="25"
+                            ></Button>-->
+                    <Button
+                        Command="{Binding AdminSideCommand}"
+                        Margin="20,0,0,0"
+                        Content="Admin"
+                        FontFamily="Italic"   
+                        Padding="20"
+                        Background="LimeGreen"
+                        Foreground="Black"
+                        FontWeight="ExtraBlack"
+                        BorderThickness="0"
+                        FontSize="25" Width="320"
+                        ></Button>
+                </StackPanel>
+            </Border>
+            <ScrollViewer>
+                <ListView ItemsSource="{Binding AllProducts}" Height="588"
+                      SelectedItem="{Binding SelectedProduct,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      Padding="10" Background="White" BorderBrush="Green"
+                      BorderThickness="5,5,5,5">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectProductCommand}"></i:InvokeCommandAction>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <ListView.View>
+                        <GridView>
+
+                            <GridViewColumn Header="Name" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontSize="18" HorizontalAlignment="Center"
+                                           Padding="5,2" Text="{Binding Name}"
+                                           ></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="Price" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock FontSize="18" HorizontalAlignment="Center"
+                                           Padding="5,2" Text="{Binding Price}"
+                                           ></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Header="Discount" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontSize="18" HorizontalAlignment="Center"
+                                            Text="{Binding Discount}"
+                                           ></TextBlock>
+                                            <TextBlock FontSize="18" HorizontalAlignment="Center"
+                                            Text="%"
+                                           ></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</Window>
